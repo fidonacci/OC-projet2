@@ -49,13 +49,20 @@ if __name__ == '__main__':
                 toc = time.perf_counter()
                 print(f"scraped_book of {scraped_book['title']} in {toc - tic:0.4f} seconds")
 
+                tic = time.perf_counter()
                 writer.writerow(scraped_book)
+                toc = time.perf_counter()
+                print(f"Adding one line to CSV in {toc - tic:0.4f} seconds")
 
+                tic = time.perf_counter()
                 myfile = requests.get(scraped_book['image_url'])
                 myfile_name = scraped_book['title'].replace('#', '').replace(
                     ',', ' ').replace(':', '-').replace('.', ' ').replace('/', '-')
 
                 open(csv_images_directory + myfile_name +
                      '.png', 'wb').write(myfile.content)
+                
+                toc = time.perf_counter()
+                print(f"Downloading image of {scraped_book['title']} in {toc - tic:0.4f} seconds")
 
                 print(scraped_book['category'], scraped_book['title'])

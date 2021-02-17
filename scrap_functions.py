@@ -11,14 +11,11 @@ book = {}
 
 # détermination des informations d'une page d'un livre
 # ---------------------------------------------------------
-
-
 def scrap_book(url):
+    
     """Return a dict with book informations.
-
     Keyword arguments:
     url -- the book page url (no default)
-
     """
 
     if requests.get(url).ok:
@@ -50,10 +47,8 @@ def scrap_book(url):
 
 def scrap_categories(url):
     """Return a list of lists formed as [category name, category url].
-
     Keyword arguments:
     url -- the site home page url (no default)
-
     """
 
     if requests.get(url).ok:
@@ -75,10 +70,8 @@ def scrap_categories(url):
 
 def scrap_category_books(url):
     """Return a list of books urls of the whole category.
-
     Keyword arguments:
     url -- the category home page url (no default)
-
     """
 
     category_books = []
@@ -111,10 +104,8 @@ def scrap_category_books(url):
 
 def scrap_page_books(url):
     """Return a list of books urls of the specific category page.
-
     Keyword arguments:
     url -- the category page url (no default)
-
     """
     if requests.get(url).ok:
         response = requests.get(url)
@@ -126,5 +117,4 @@ def scrap_page_books(url):
     for p in page_books:
         url_table.append(url_home + 'catalogue/' +
                          p.h3.a['href'].strip('../../../'))
-
     return url_table
