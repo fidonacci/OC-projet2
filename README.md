@@ -5,12 +5,11 @@ Pour utitliser le programme, mettez-vous dans le répértoire de votre choix
 `$ git clone https://github.com/fidonacci/OC-projet2.git`  
 `$ cd OC-projet2/`
 
-Avec pipenv installer les modules du fichier requirements
-
-`$ pipenv install -r requirements.txt`
-
 Activer l'environnement virtuel
 `$ pipenv shell`
+
+Avec pipenv installer les modules du fichier requirements
+`$ pip install -r requirements.txt`
 
 > Le programme crée un dossier **scraping_files_exercices** 
 > dans le répértoire courant.

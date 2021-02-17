@@ -2,11 +2,9 @@
 import csv
 import os
 import requests
-
-
 from scrap_functions import scrap_book, scrap_categories, scrap_category_books
+from constants import url_home, csv_columns
 
-url_home = 'http://books.toscrape.com/'
 
 csv_files_directory = os.getcwd() + '/scraping_files_exercice/'
 print(csv_files_directory)
@@ -18,12 +16,6 @@ try:
     
 except OSError:
     print('Le dossier csv existe')
-
-
-
-# flemme de réécrire les attributs des livres / récupérés avec une url de livre lambda
-csv_columns = scrap_book(
-    'http://books.toscrape.com/catalogue/its-only-the-himalayas_981/index.html').keys()
 
 if __name__ == '__main__':
 
