@@ -37,14 +37,17 @@ if __name__ == '__main__':
             writer = csv.DictWriter(csvfile,delimiter=';', fieldnames=csv_columns)
             writer.writeheader()
 
+
             for book in scrap_category_books(categorie[1]):
 
-                writer.writerow(scrap_book(book))
+                scrap = scrap_book(book)
 
-                myfile = requests.get(scrap_book(book)['image_url'])
-                myfile_name = scrap_book(book)['title'].replace('#','').replace(',',' ').replace(':','-').replace('.',' ').replace('/','-')
+                writer.writerow(scrap)
+
+                myfile = requests.get(scrap['image_url'])
+                myfile_name = scrap['title'].replace('#','').replace(',',' ').replace(':','-').replace('.',' ').replace('/','-')
 
                 open(csv_images_directory+ myfile_name   +
                      '.png', 'wb').write(myfile.content)
                 
-                print(myfile_name)
+                print(scrap['category'], scrap['title'])

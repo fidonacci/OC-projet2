@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 # définitions
 categories_list=[]
@@ -19,7 +20,7 @@ def scrap_book(url):
         book["title"] = page_book.h1.text.encode('utf-8').decode('ascii', 'ignore')
         book["price_including_tax"] = page_book.table.find_all('tr')[3].td.text.encode('utf-8').decode('ascii', 'ignore')
         book["price_excluding_tax"] = page_book.table.find_all('tr')[2].td.text.encode('utf-8').decode('ascii', 'ignore')
-        book["number_available"] = page_book.table.find_all('tr')[6].td.text.encode('utf-8').decode('ascii', 'ignore')
+        book["number_available"] = int(re.findall('[0-9]+', str(page_book.table.find_all('tr')[5]))[0])
         book["product_description"] = page_book.find_all('p')[3].text.encode('utf-8').decode('ascii', 'ignore')
         book["category"] = page_book.find(class_='breadcrumb').find_all('a')[2].text.encode('utf-8').decode('ascii', 'ignore')
         book["review_rating"] = " ".join(page_book.find_all('p')[2]['class'])
@@ -91,6 +92,6 @@ def scrap_page_books(url):
 
 
 
-    
+scrap_book('http://books.toscrape.com/catalogue/sapiens-a-brief-history-of-humankind_996/index.html')   
 
 
