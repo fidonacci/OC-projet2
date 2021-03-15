@@ -3,8 +3,8 @@
 import csv
 import os
 import requests
-from scrap_functions import scrap_book, scrap_categories, scrap_category_books
-from constants import url_home, csv_columns
+from functions.scrap_functions import scrap_book, scrap_categories, scrap_category_books
+from constants.constants import url_home, csv_columns
 import time
 
 
@@ -21,6 +21,7 @@ except OSError:
 
 if __name__ == '__main__':
 
+    tic_global = time.perf_counter()
     tic = time.perf_counter()
     scraped_categories = scrap_categories(url_home)
     toc = time.perf_counter()
@@ -66,3 +67,6 @@ if __name__ == '__main__':
                 print(f"Downloading image of {scraped_book['title']} in {toc - tic:0.4f} seconds")
 
                 print(scraped_book['category'], scraped_book['title'])
+    
+    toc_global = time.perf_counter()
+    print(f"scraped_categories in {(toc_global - tic_global)/60:0.4f} minutes")

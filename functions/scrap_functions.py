@@ -3,7 +3,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-from constants import url_home
+from constants.constants import url_home
 
 # définitions
 categories_list = []
